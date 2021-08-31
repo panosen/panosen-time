@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Savory.Time
+namespace Panosen.Time
 {
     /// <summary>
     /// 时间转换器
