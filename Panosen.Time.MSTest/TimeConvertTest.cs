@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Savory.Time.Test
+namespace Panosen.Time.Test
 {
     [TestClass]
     public class TimeConvertTest
