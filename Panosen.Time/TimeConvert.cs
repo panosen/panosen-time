@@ -10,7 +10,7 @@ namespace Panosen.Time
         /// <summary>
         /// 基准时间
         /// </summary>
-        public static readonly DateTime TimeBase = new DateTime(1970, 1, 1);
+        public static readonly DateTime TimeBase = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// 转换为秒需要用到的
@@ -27,9 +27,9 @@ namespace Panosen.Time
         /// </summary>
         /// <param name="ticks">从1970年1月1日00:00:00至起用时间的秒数</param>
         /// <returns>转换后的时间</returns>
-        public static DateTime FromTicks(long ticks)
+        public static DateTimeOffset FromTicks(long ticks)
         {
-            return new DateTime(TimeBase.Ticks + ticks * SecondBase).ToLocalTime();
+            return new DateTime(TimeBase.Ticks + ticks * SecondBase, DateTimeKind.Utc).ToLocalTime();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Panosen.Time
         /// </summary>
         /// <param name="time">需要转换的时间</param>
         /// <returns>从1970年1月1日00:00:00至起用时间的秒数</returns>
-        public static long ToTicks(DateTime time)
+        public static long ToTicks(DateTimeOffset time)
         {
             return (time.ToUniversalTime() - TimeBase).Ticks / SecondBase;
         }
@@ -47,9 +47,9 @@ namespace Panosen.Time
         /// </summary>
         /// <param name="millsTicks">从1970年1月1日00:00:00至起用时间的毫秒数</param>
         /// <returns>转换后的时间</returns>
-        public static DateTime FromMilliTicks(long millsTicks)
+        public static DateTimeOffset FromMilliTicks(long millsTicks)
         {
-            return new DateTime(TimeBase.Ticks + millsTicks * MillsSecondBase).ToLocalTime();
+            return new DateTime(TimeBase.Ticks + millsTicks * MillsSecondBase, DateTimeKind.Utc).ToLocalTime();
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Panosen.Time
         /// </summary>
         /// <param name="time">需要转换的时间</param>
         /// <returns>从1970年1月1日00:00:00至起用时间的毫秒数</returns>
-        public static long ToMilliTicks(DateTime time)
+        public static long ToMilliTicks(DateTimeOffset time)
         {
             return (time.ToUniversalTime() - TimeBase).Ticks / MillsSecondBase;
         }
