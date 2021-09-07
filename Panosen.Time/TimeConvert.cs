@@ -8,9 +8,9 @@ namespace Panosen.Time
     public static class TimeConvert
     {
         /// <summary>
-        /// 基准时间
+        /// 基准时间，UTC 1970-01-01
         /// </summary>
-        public static readonly DateTime TimeBase = new DateTime(1970, 1, 1);
+        public static readonly DateTime TimeBase = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// 转换为秒需要用到的
@@ -29,7 +29,7 @@ namespace Panosen.Time
         /// <returns>转换后的时间</returns>
         public static DateTime FromTicks(long ticks)
         {
-            return new DateTime(TimeBase.Ticks + ticks * SecondBase).ToLocalTime();
+            return new DateTime(TimeBase.Ticks + ticks * SecondBase, DateTimeKind.Utc).ToLocalTime();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Panosen.Time
         /// <returns>转换后的时间</returns>
         public static DateTime FromMilliTicks(long millsTicks)
         {
-            return new DateTime(TimeBase.Ticks + millsTicks * MillsSecondBase).ToLocalTime();
+            return new DateTime(TimeBase.Ticks + millsTicks * MillsSecondBase, DateTimeKind.Utc).ToLocalTime();
         }
 
         /// <summary>
